@@ -8,13 +8,20 @@ import "./styles.css";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
   });
-  const handleChange = (e) => {};
-  const handleSubmit = (e) => {};
+      const handleChange = (e) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+            
+        
+  };
+      const handleSubmit = (e) => {
+            e.preventDefault();
+            console.log("data", formData);
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -30,6 +37,7 @@ const ContactForm = () => {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={handleChange}
                 autoFocus
               />
             </Grid>
@@ -41,6 +49,7 @@ const ContactForm = () => {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
+                onChange={handleChange}
                 autoComplete="lname"
               />
             </Grid>
@@ -51,6 +60,7 @@ const ContactForm = () => {
                 fullWidth
                 id="email"
                 label="Email Address"
+                onChange={handleChange}
                 name="email"
                 autoComplete="email"
               />
@@ -62,7 +72,8 @@ const ContactForm = () => {
                 fullWidth
                 name="phoneNumber"
                 label="Phone Number"
-                type="phoneNumber"
+                                            type="phoneNumber"
+                                            onChange={handleChange}
                 id="phoneNumber"
               />
             </Grid>
