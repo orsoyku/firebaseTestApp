@@ -6,21 +6,20 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import "./styles.css";
 
-const ContactForm = () => {
+const ContactForm = ({ addContact }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phoneNumber: "",
   });
-      const handleChange = (e) => {
-            setFormData({ ...formData, [e.target.name]: e.target.value })
-            
-        
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-      const handleSubmit = (e) => {
-            e.preventDefault();
-            console.log("data", formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addContact(formData);
+    
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -72,8 +71,8 @@ const ContactForm = () => {
                 fullWidth
                 name="phoneNumber"
                 label="Phone Number"
-                                            type="phoneNumber"
-                                            onChange={handleChange}
+                type="phoneNumber"
+                onChange={handleChange}
                 id="phoneNumber"
               />
             </Grid>

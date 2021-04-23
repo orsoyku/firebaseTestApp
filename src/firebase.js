@@ -1,4 +1,4 @@
-import * as firebase from 'firebasenpm install react-bootstrap bootstrap'
+import  firebase from 'firebase'
 var firebaseConfig = {
     apiKey: "AIzaSyCejzuw8Xn0ODcNKbO4-PTXeQ94bUhwFDk",
     authDomain: "react-realtime-app-4d49b.firebaseapp.com",
@@ -9,4 +9,6 @@ var firebaseConfig = {
     appId: "1:437530178519:web:14d3ea250d9cc3f5279192"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+var firebaseDB= firebase.initializeApp(firebaseConfig);
+
+export default firebaseDB.database().ref()
