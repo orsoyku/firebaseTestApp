@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -6,13 +6,24 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import "./styles.css";
 
-const ContactForm = ({ addContact }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-  });
+const ContactForm = ({ addContact, currentId, contactData }) => {
+    const [formData, setFormData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+    });
+  useEffect(() => {
+    if (currentId === '') {
+            setFormData({...formData})
+         
+    } else {
+      setFormData({...contactData[currentId]})
+    }
+    
+  
+    }, [currentId,contactData])
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -36,6 +47,7 @@ const ContactForm = ({ addContact }) => {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                value={formData.firstName}
                 onChange={handleChange}
                 autoFocus
               />
@@ -48,6 +60,7 @@ const ContactForm = ({ addContact }) => {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
+                value={formData.lastName}
                 onChange={handleChange}
                 autoComplete="lname"
               />
@@ -61,6 +74,7 @@ const ContactForm = ({ addContact }) => {
                 label="Email Address"
                 onChange={handleChange}
                 name="email"
+                value={formData.email}
                 autoComplete="email"
               />
             </Grid>
@@ -72,6 +86,7 @@ const ContactForm = ({ addContact }) => {
                 name="phoneNumber"
                 label="Phone Number"
                 type="phoneNumber"
+                value={formData.phoneNumber}
                 onChange={handleChange}
                 id="phoneNumber"
               />
